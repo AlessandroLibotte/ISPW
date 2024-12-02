@@ -5739,7 +5739,7 @@
 											"top": 563,
 											"width": 72,
 											"height": 12,
-											"text": "Entity"
+											"text": "Model"
 										},
 										{
 											"_type": "LabelView",
@@ -12260,7 +12260,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGTGw2SEf8BVoU="
 					},
-					"name": "Entity",
+					"name": "Model",
 					"ownedElements": [
 						{
 							"_type": "UMLExtension",
