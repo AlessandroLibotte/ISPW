@@ -91,6 +91,8 @@ public class ViewAffittuario {
         }
     }
 
+    void
+
     void registerMenu() throws IOException {
 
         String username = null;
