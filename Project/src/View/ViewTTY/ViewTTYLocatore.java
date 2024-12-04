@@ -4,7 +4,6 @@ import View.View;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 public class ViewTTYLocatore implements View {
 
@@ -18,17 +17,15 @@ public class ViewTTYLocatore implements View {
 
     public void mainMenu() throws IOException {
 
-        String indirizzo = "Roma";
-        boolean[] filtri = new boolean[6];
-
         while(!quit) {
 
             System.out.println("Welcome to EasyRent Locatore");
-            System.out.println("\t1) Set search parameters [" + indirizzo + Arrays.toString(filtri) +"]");
-            System.out.println("\t2) Search");
-            System.out.println("\t3) View Profile Info");
-            System.out.println("\t4) Visualizza i tuoi Annunci");
-            System.out.println("\t4) Log off");
+            System.out.println("\t1) Visualizza i tuoi annunci");
+            System.out.println("\t2) Crea nuovo annuncio");
+            System.out.println("\t3) Cerca compagnia");
+            System.out.println("\t4) View Profile Info");
+            System.out.println("\t5) Log off");
+            System.out.println("\t6) Quit");
 
             String action = br.readLine();
 
@@ -36,14 +33,15 @@ public class ViewTTYLocatore implements View {
                 case "1":
                 case "2":
                 case "3":
-                    break;
                 case "4":
+                    break;
+                case "5":
                     return;
+                case "6":
+                    quit = true;
+                    break;
             }
         }
     }
 
-    public void cercaAnnuncio(){
-        return;
-    }
 }
