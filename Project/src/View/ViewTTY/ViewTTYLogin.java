@@ -1,30 +1,29 @@
-package ViewTTY;
+package View.ViewTTY;
 
+import View.View;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
-import Control.LoginController;
+public class ViewTTYLogin {
 
-public class ViewAffittuario {
-
-    Boolean quit;
+    boolean quit;
     BufferedReader br;
-    LoginController lc;
+    loginBean lb;
+    View vm;
 
-    public ViewAffittuario() {
+    public ViewTTYLogin() {
 
         quit = false;
         br = new BufferedReader(new InputStreamReader(System.in));
-        lc = new LoginController();
+        lb = new loginBean();
 
     }
 
     public void loginMenu() throws IOException {
 
-        String username = null;
-        String password = null;
+        String username = "";
+        String password = "";
 
         while(!quit) {
 
@@ -50,8 +49,14 @@ public class ViewAffittuario {
                     password = br.readLine();
                     break;
                 case "3":
-                    if(lc.validate(username, password)) mainMenu();
-                    else System.out.println("Invalid Username or Password");
+                    int res = lb.validate(username, password);
+                    if (res == 1) {
+                        vm = new ViewTTYAffittuario();
+                        vm.mainMenu();
+                    } else if (res == 2) {
+                        vm = new ViewTTYLocatore();
+                        vm.mainMenu();
+                    } else System.out.println("Invalid Username or Password");
                     break;
                 case "4":
                     registerMenu();
@@ -65,38 +70,10 @@ public class ViewAffittuario {
 
     }
 
-    void mainMenu() throws IOException {
-
-        String indirizzo = "Roma";
-        Boolean[] filtri = new Boolean[6];
-
-        while(!quit) {
-
-            System.out.println("Welcome to EasyRent");
-            System.out.println("\t1) Set search parameters [" + indirizzo + Arrays.toString(filtri) +"]");
-            System.out.println("\t2) Search");
-            System.out.println("\t3) View Profile Info");
-            System.out.println("\t4) Log off");
-
-            String action = br.readLine();
-
-            switch(action) {
-                case "1":
-                case "2":
-                case "3":
-                    break;
-                case "4":
-                    return;
-            }
-        }
-    }
-
-    void
-
     void registerMenu() throws IOException {
 
-        String username = null;
-        String password = null;
+        String username = "";
+        String password = "";
         int role = 0;
 
         while(!quit) {
@@ -136,8 +113,9 @@ public class ViewAffittuario {
                     role = Integer.parseInt(br.readLine());
                     break;
                 case "4":
-                    lc.register(username, password, role);
-                    return;
+                    if (lb.validate(username, password, role)) return;
+                    else System.out.println("Invalid Username or Password");
+                    break;
                 case "5":
                     return;
             }

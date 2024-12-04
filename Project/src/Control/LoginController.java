@@ -3,7 +3,6 @@ import Model.Affittuario;
 import Model.Locatore;
 import Model.Utente;
 
-import java.util.Objects;
 import java.util.Vector;
 
 public class LoginController {
@@ -14,15 +13,23 @@ public class LoginController {
         utenti = new Vector<Utente>();
     }
 
-    public boolean validate(String username, String password) {
+    public int validate(String username, String password) {
 
-        if(utenti.isEmpty()) return false;
+        if(utenti.isEmpty()) return 0;
 
         for(Utente u : utenti) {
-            if(u.getUsername().equals(username) && u.getPassword().equals(password)) return true;
+            if(u.getUsername().equals(username) && u.getPassword().equals(password)) {
+                if (u instanceof Affittuario) {
+                    return 1;
+                }
+                if (u instanceof Locatore) {
+                    return 2;
+                }
+                return 0;
+            }
         }
 
-        return false;
+        return 0;
     }
 
     public void register(String username, String password, int role) {

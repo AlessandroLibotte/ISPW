@@ -7,5 +7,4 @@ public class Annuncio {
     String descrizione;
     int voto;
 
-
 }

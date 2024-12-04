@@ -3,12 +3,12 @@ package Model;
 public class Immobile {
 
     String indirizzo;
-    String[] servizi;
+    boolean[] servizi;
 
-    String getIndirizzo(){
+    public String getIndirizzo(){
         return indirizzo;
     }
-    String[] getServizi(){
+    public boolean[] getServizi(){
         return servizi;
     }
 
